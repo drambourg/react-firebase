@@ -10,7 +10,7 @@ const jsonToFirestore = async () => {
         await firestoreService.initializeApp(serviceAccount, firebaseConfig.databaseURL);
         console.log('Firebase Initialized');
 
-        await firestoreService.restore('./src/data/gotCharacter.json');
+        await firestoreService.restore('./src/data/breakingbadCharacters.json');
         console.log('Upload Success');
 
     }
