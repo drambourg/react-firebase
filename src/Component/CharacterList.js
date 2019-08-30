@@ -8,9 +8,10 @@ class CharacterList extends Component {
     }
 
     async componentDidMount() {
-        const querySnapshot = await db.collection("bbCharacters").get();
-        const data = querySnapshot.docs.map(doc => doc.data());
-        this.setState({data}, () => console.log(this.state))
+        db.collection("bbCharacters").orderBy('name').onSnapshot(querySnapshot => {
+            const data = querySnapshot.docs.map(doc => doc.data());
+            this.setState({data}, () => console.log(this.state))
+        });
     }
 
     render() {
@@ -28,8 +29,10 @@ class CharacterList extends Component {
                                 <Card.Text className="text-danger">
                                     {character.status}
                                 </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
                             </Card.Body>
+                            <Card.Footer>
+                                <Button variant="info" disabled>More info ...</Button>
+                            </Card.Footer>
                         </Card>
                    )}
                 </Row>
