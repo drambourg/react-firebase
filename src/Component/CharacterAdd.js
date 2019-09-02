@@ -1,6 +1,6 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import {Button, Form, Alert} from 'react-bootstrap'
-import {db} from "../firebase";
+import {db} from "../config/firebase";
 
 class CharacterAdd extends Component {
 

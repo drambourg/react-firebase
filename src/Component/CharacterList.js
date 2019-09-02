@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {db} from "../firebase";
+import {db} from "../config/firebase";
 import {Button, Card, Row} from 'react-bootstrap'
 
 class CharacterList extends Component {

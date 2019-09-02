@@ -1,8 +1,8 @@
 // Imports
 const firestoreService = require('firestore-export-import');
-const firebaseConfig = require('./config');
+const firebaseConfig = require('../config/config');
 const fs = require('fs');
-const serviceAccount = require('./serviceAccount.json');
+const serviceAccount = require('../serviceAccount.json');
 
 // JSON To Firestore
 const jsonfromFirestore = async () => {
