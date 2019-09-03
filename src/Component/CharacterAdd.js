@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Form, Alert} from 'react-bootstrap'
-import {db} from "../config/firebase";
+import db from "../config/firebase";
+import firebase from "../config/firebase";
 
 class CharacterAdd extends Component {
 
@@ -14,7 +15,7 @@ class CharacterAdd extends Component {
         })
     }
 
-     addConfirmAlert = () => {
+    addConfirmAlert = () => {
         if (this.state.addConfirm) {
             return (
                 <Alert variant="success" onClose={() => this.setState({addConfirm:false})} dismissible>
@@ -32,10 +33,11 @@ class CharacterAdd extends Component {
         e.preventDefault();
         console.log(JSON.stringify(this.state))
         // Add a new document with a generated id.
-        let addDoc = db.collection('bbCharacters').add({
+        let addDoc = firebase.db.collection('bbCharacters').add({
             ...this.state,
             img: 'https://picsum.photos/200/300',
             status : 'Alive',
+            userUID : firebase.getCurrentUserUID(),
         }).then(ref => {
             this.setState({addConfirm:true});
             console.log('Added character with ID: ', ref.id);
@@ -46,7 +48,6 @@ class CharacterAdd extends Component {
         return (
             <div>
                 {this.addConfirmAlert()}
-                <h2>Add a Character</h2>
                 <Form className="col-6 justify-content-center mx-auto" onSubmit={this.handleSubmit}>
                     <Form.Group controlId="name">
                         <Form.Label>Name</Form.Label>
